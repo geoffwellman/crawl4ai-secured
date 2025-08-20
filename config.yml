@@ -19,8 +19,11 @@ rate_limiting:
   storage_uri: "memory://"
 
 llm:
-  provider: "openai/gpt-4o-mini"
-  api_key_env: "OPENAI_API_KEY"
+  provider: "${LLM_PROVIDER:-openai/gpt-4o-mini}"
+  api_key_env: "${LLM_API_KEY_ENV:-OPENAI_API_KEY}"
+  temperature: ${LLM_TEMPERATURE:-0.7}
+  max_tokens: ${LLM_MAX_TOKENS:-2000}
+  base_url: "${LLM_BASE_URL:-}"
 
 logging:
   level: "${LOG_LEVEL:-INFO}"

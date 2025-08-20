@@ -22,7 +22,25 @@ A production-ready deployment of [Crawl4AI](https://github.com/unclecode/crawl4a
 
 ### Optional Environment Variables
 
-- `OPENAI_API_KEY` - For LLM-based extraction features
+#### LLM Configuration
+- `LLM_PROVIDER` - LLM model to use (default: "openai/gpt-4o-mini")
+  - OpenAI: `openai/gpt-5-mini`, `openai/gpt-4o`, `openai/gpt-4o-mini`
+  - Anthropic: `anthropic/claude-sonnet-4`, `anthropic/claude-3-5-sonnet-20241022`, `anthropic/claude-3-opus-20240229`
+  - Google: `gemini/gemini-1.5-pro`, `gemini/gemini-1.5-flash`
+  - Groq: `groq/llama3-70b-8192`, `groq/mixtral-8x7b-32768`
+  - Ollama: `ollama/llama3.3`, `ollama/qwen2` (requires `LLM_BASE_URL`)
+- `LLM_API_KEY_ENV` - Name of the API key env var (default: "OPENAI_API_KEY")
+- `LLM_BASE_URL` - Custom LLM endpoint (e.g., "http://localhost:11434" for Ollama)
+- `LLM_TEMPERATURE` - Response randomness 0.0-1.0 (default: 0.7)
+- `LLM_MAX_TOKENS` - Max response tokens (default: 2000)
+
+#### API Keys (set based on your LLM_PROVIDER)
+- `OPENAI_API_KEY` - OpenAI API key
+- `ANTHROPIC_API_KEY` - Anthropic API key
+- `GROQ_API_KEY` - Groq API key
+- `GEMINI_API_KEY` - Google Gemini API key
+
+#### Other Settings
 - `RATE_LIMIT` - API rate limit (default: "10/minute")
 - `JWT_EXPIRE_MINUTES` - Token expiration time (default: 30)
 - `LOG_LEVEL` - Logging verbosity (default: "INFO")
@@ -133,6 +151,63 @@ crawl_response = requests.post(
 )
 
 print(json.dumps(crawl_response.json(), indent=2))
+```
+
+## Example: Using Different LLM Providers
+
+The template supports multiple LLM providers. Simply set the `LLM_PROVIDER` environment variable:
+
+```bash
+# OpenAI GPT-5 Mini (latest)
+LLM_PROVIDER=openai/gpt-5-mini
+OPENAI_API_KEY=sk-your-key
+
+# Anthropic Claude Sonnet 4 (latest)
+LLM_PROVIDER=anthropic/claude-sonnet-4
+ANTHROPIC_API_KEY=your-anthropic-key
+
+# Google Gemini
+LLM_PROVIDER=gemini/gemini-1.5-pro
+GEMINI_API_KEY=your-gemini-key
+
+# Groq (fast inference)
+LLM_PROVIDER=groq/llama3-70b-8192
+GROQ_API_KEY=your-groq-key
+
+# Local Ollama
+LLM_PROVIDER=ollama/llama3.3
+LLM_BASE_URL=http://localhost:11434
+```
+
+Then use LLM extraction in your requests:
+
+```python
+crawl_response = requests.post(
+    "https://your-app.railway.app/crawl",
+    headers=headers,
+    json={
+        "urls": ["https://example.com"],
+        "extraction_strategy": {
+            "type": "llm",
+            "instruction": "Extract all product names and prices",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {"type": "string"},
+                                "price": {"type": "string"}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+)
 ```
 
 ## Support

@@ -18,10 +18,50 @@
       "default": "",
       "generator": "secret"
     },
+    "LLM_PROVIDER": {
+      "description": "LLM provider (e.g., openai/gpt-4o-mini, anthropic/claude-3-5-sonnet, ollama/llama3.3, groq/llama3-70b-8192)",
+      "required": false,
+      "default": "openai/gpt-4o-mini"
+    },
+    "LLM_API_KEY_ENV": {
+      "description": "Environment variable name for LLM API key (e.g., OPENAI_API_KEY, ANTHROPIC_API_KEY)",
+      "required": false,
+      "default": "OPENAI_API_KEY"
+    },
     "OPENAI_API_KEY": {
-      "description": "OpenAI API key for LLM features (optional)",
+      "description": "OpenAI API key (required if using OpenAI models)",
       "required": false,
       "default": ""
+    },
+    "ANTHROPIC_API_KEY": {
+      "description": "Anthropic API key (required if using Claude models)",
+      "required": false,
+      "default": ""
+    },
+    "GROQ_API_KEY": {
+      "description": "Groq API key (required if using Groq models)",
+      "required": false,
+      "default": ""
+    },
+    "GEMINI_API_KEY": {
+      "description": "Google Gemini API key (required if using Gemini models)",
+      "required": false,
+      "default": ""
+    },
+    "LLM_BASE_URL": {
+      "description": "Custom LLM endpoint URL (e.g., http://localhost:11434 for Ollama)",
+      "required": false,
+      "default": ""
+    },
+    "LLM_TEMPERATURE": {
+      "description": "LLM temperature for response randomness (0.0-1.0)",
+      "required": false,
+      "default": "0.7"
+    },
+    "LLM_MAX_TOKENS": {
+      "description": "Maximum tokens for LLM responses",
+      "required": false,
+      "default": "2000"
     },
     "RATE_LIMIT": {
       "description": "API rate limit (e.g., 10/minute, 100/hour)",
