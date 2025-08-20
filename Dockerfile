@@ -20,8 +20,5 @@ ENV CRAWL4AI_HOME=/home/appuser/.crawl4ai
 # Switch back to appuser (as per original image)
 USER appuser
 
-# Expose the port
-EXPOSE 11235
-
 # Use start script as entrypoint
 CMD ["/start.sh"]
