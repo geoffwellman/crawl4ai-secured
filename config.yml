@@ -9,7 +9,7 @@ security:
   jwt_enabled: true
   jwt_secret_key: "${JWT_SECRET_KEY}"
   jwt_algorithm: "HS256"
-  jwt_expire_minutes: ${JWT_EXPIRE_MINUTES:-30}
+  jwt_expire_minutes: ${JWT_EXPIRE_MINUTES}
   https_redirect: false
   trusted_hosts: ["*"]
   headers:
@@ -55,14 +55,14 @@ crawler:
       text_mode: true
 
 llm:
-  provider: "${LLM_PROVIDER:-openai/gpt-4o-mini}"
-  api_key_env: "${LLM_API_KEY_ENV:-OPENAI_API_KEY}"
-  temperature: ${LLM_TEMPERATURE:-0.7}
-  max_tokens: ${LLM_MAX_TOKENS:-2000}
-  base_url: "${LLM_BASE_URL:-}"
+  provider: "${LLM_PROVIDER}"
+  api_key_env: "${LLM_API_KEY_ENV}"
+  temperature: ${LLM_TEMPERATURE}
+  max_tokens: ${LLM_MAX_TOKENS}
+  base_url: "${LLM_BASE_URL}"
 
 logging:
-  level: "${LOG_LEVEL:-INFO}"
+  level: "${LOG_LEVEL}"
   format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 
 observability:
