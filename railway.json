@@ -1,0 +1,42 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "DOCKERFILE",
+    "dockerfilePath": "Dockerfile"
+  },
+  "deploy": {
+    "startCommand": "/start.sh",
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10,
+    "healthcheckPath": "/health",
+    "healthcheckTimeout": 30
+  },
+  "envVars": {
+    "JWT_SECRET_KEY": {
+      "description": "Secret key for JWT token generation (32+ characters recommended)",
+      "required": true,
+      "default": "",
+      "generator": "secret"
+    },
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API key for LLM features (optional)",
+      "required": false,
+      "default": ""
+    },
+    "RATE_LIMIT": {
+      "description": "API rate limit (e.g., 10/minute, 100/hour)",
+      "required": false,
+      "default": "10/minute"
+    },
+    "JWT_EXPIRE_MINUTES": {
+      "description": "JWT token expiration time in minutes",
+      "required": false,
+      "default": "30"
+    },
+    "LOG_LEVEL": {
+      "description": "Logging level (DEBUG, INFO, WARNING, ERROR)",
+      "required": false,
+      "default": "INFO"
+    }
+  }
+}

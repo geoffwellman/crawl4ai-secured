@@ -1,0 +1,33 @@
+app:
+  title: "Crawl4AI API"
+  host: "0.0.0.0"
+  port: 8020
+  reload: false
+
+security:
+  enabled: true
+  jwt_enabled: true
+  jwt_secret_key: "${JWT_SECRET_KEY}"
+  jwt_algorithm: "HS256"
+  jwt_expire_minutes: ${JWT_EXPIRE_MINUTES:-30}
+  https_redirect: true
+  trusted_hosts: ["*"]
+
+rate_limiting:
+  enabled: true
+  default_limit: "${RATE_LIMIT:-10/minute}"
+  storage_uri: "memory://"
+
+llm:
+  provider: "openai/gpt-4o-mini"
+  api_key_env: "OPENAI_API_KEY"
+
+logging:
+  level: "${LOG_LEVEL:-INFO}"
+
+observability:
+  prometheus:
+    enabled: true
+    endpoint: "/metrics"
+  health_check:
+    endpoint: "/health"
