@@ -23,7 +23,7 @@ security:
 
 rate_limiting:
   enabled: true
-  default_limit: "${RATE_LIMIT:-10/minute}"
+  default_limit: "${RATE_LIMIT}"
   trusted_proxies: []
   storage_uri: "memory://"
 

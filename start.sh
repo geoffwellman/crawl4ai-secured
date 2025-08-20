@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Set default values for environment variables if not provided
+export RATE_LIMIT="${RATE_LIMIT:-10/minute}"
+
 # Substitute environment variables in config.yml
 envsubst < /app/config.yml > /app/config_final.yml
 mv /app/config_final.yml /app/config.yml
