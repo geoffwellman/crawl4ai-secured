@@ -1,5 +1,8 @@
 FROM unclecode/crawl4ai:latest
 
+# Switch to root to install packages
+USER root
+
 # Install envsubst for environment variable substitution
 RUN apt-get update && apt-get install -y gettext-base && rm -rf /var/lib/apt/lists/*
 

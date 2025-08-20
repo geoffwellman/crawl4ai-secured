@@ -12,7 +12,7 @@ A production-ready deployment of [Crawl4AI](https://github.com/unclecode/crawl4a
 
 ## Quick Deploy
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/crawl4ai-secured)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/thK2pn?referralCode=1lMTUi)
 
 ## Configuration
 
