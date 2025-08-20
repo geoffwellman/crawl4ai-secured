@@ -1,11 +1,6 @@
 app:
   title: "Crawl4AI API"
   version: "1.0.0"
-  host: "0.0.0.0"
-  port: 11234
-  reload: false
-  workers: 1
-  timeout_keep_alive: 300
 
 security:
   enabled: true
@@ -13,13 +8,8 @@ security:
   jwt_secret_key: "${JWT_SECRET_KEY}"
   jwt_algorithm: "HS256"
   jwt_expire_minutes: ${JWT_EXPIRE_MINUTES:-30}
-  https_redirect: true
+  https_redirect: false
   trusted_hosts: ["*"]
-  headers:
-    x_content_type_options: "nosniff"
-    x_frame_options: "DENY"
-    content_security_policy: "default-src 'self'"
-    strict_transport_security: "max-age=63072000; includeSubDomains"
 
 rate_limiting:
   enabled: true
@@ -27,7 +17,6 @@ rate_limiting:
   trusted_proxies: []
   storage_uri: "memory://"
 
-# Redis Configuration
 redis:
   host: "localhost"
   port: 6379

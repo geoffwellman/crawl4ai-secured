@@ -19,11 +19,11 @@ A production-ready deployment of [Crawl4AI](https://github.com/unclecode/crawl4a
 After deploying, you need to configure the port in Railway:
 
 1. Go to your service settings in Railway
-2. Under "Networking" → "Public Networking"
-3. Set the port to `11234`
+2. Under "Networking" → "Public Networking"  
+3. Set the port to `11235`
 4. Save and redeploy
 
-This is required because Crawl4AI runs on a fixed port.
+This is required because Crawl4AI runs on a fixed port (configured in supervisord.conf).
 
 ## Configuration
 
