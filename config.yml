@@ -2,7 +2,7 @@ app:
   title: "Crawl4AI API"
   version: "1.0.0"
   host: "0.0.0.0"
-  port: ${PORT:-11235}
+  port: 11235
   reload: false
   workers: 1
   timeout_keep_alive: 300
